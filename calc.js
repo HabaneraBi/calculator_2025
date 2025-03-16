@@ -14,10 +14,8 @@ buttons_figure.forEach((figure) => {
     } else if (figure.textContent === ".") {
       if (num1 !== "" && num2 === "" && operation === "") {
         num1 += figure.textContent;
-        console.log("num1 - " + num1);
       } else if (num2 !== "" && operation !== "") {
         num2 += figure.textContent;
-        console.log("num2 - " + num2);
       } else {
         return;
       }
@@ -68,7 +66,8 @@ all_buts[17].addEventListener("click", function () {
     if (
       String(Number(num1) + Number(num2))
         .split("")
-        .at(-2) === "0"
+        .at(-2) === "0" &&
+      String(Number(num1) + Number(num2)).includes(".")
     ) {
       const arr = String(Number(num1) + Number(num2)).split("");
       let z = 0;
