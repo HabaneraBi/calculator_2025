@@ -1,26 +1,65 @@
 let input = document.getElementById("inp");
 let all_buts = document.getElementsByTagName("button");
 let buttons_figure = document.querySelectorAll(".figure");
-let buttons_oper = document.querySelectorAll(".move");
+let buttons_oper = document.querySelectorAll(".oper");
 let operation = "";
 let num1 = "";
 let num2 = "";
 // 0 1 2 5 6 7 10 11 12 16
 buttons_figure.forEach((figure) => {
   figure.addEventListener("click", function () {
-    if (operation === "" || num1 === "") {
-      num1 += figure.textContent;
+    if (input.value === "На ноль делить нельзя!") {
+      num1 = figure.textContent;
+      input.value = figure.textContent;
+    } else if (figure.textContent === ".") {
+      if (num1 !== "" && num2 === "" && operation === "") {
+        num1 += figure.textContent;
+        console.log("num1 - " + num1);
+      } else if (num2 !== "" && operation !== "") {
+        num2 += figure.textContent;
+        console.log("num2 - " + num2);
+      } else {
+        return;
+      }
+      input.value += figure.textContent;
     } else {
-      num2 += figure.textContent;
+      if (operation === "" || num1 === "") {
+        num1 += figure.textContent;
+      } else {
+        num2 += figure.textContent;
+      }
+      input.value += figure.textContent;
     }
-    input.value += figure.textContent;
   });
 });
 
 buttons_oper.forEach((oper) => {
   oper.addEventListener("click", function () {
-    input.value += " " + oper.textContent + " ";
-    operation = oper.textContent;
+    if (oper.textContent === "±") {
+      if (num1 !== "" && num2 === "" && operation === "") {
+        let input_arr = input.value.split("");
+        if (Number(num1) > 0) {
+          input_arr.unshift("-");
+        } else if (Number(num1 < 0)) {
+          input_arr.shift();
+        }
+        num1 = String(Number(num1) * -1);
+        input.value = input_arr.join("");
+      } else if (num2 !== "" && operation !== "") {
+        let slice1_input = input.value.slice(0, num1.length + 3);
+        let slice2_input = input.value.slice(num1.length + 3);
+        if (Number(num2) > 0) {
+          slice2_input = "-" + slice2_input;
+        } else if (Number(num2 < 0)) {
+          slice2_input = slice2_input.slice(1);
+        }
+        num2 = num2 * -1;
+        input.value = slice1_input + slice2_input;
+      }
+    } else if (operation === "" && num1 !== "") {
+      input.value += " " + oper.textContent + " ";
+      operation = oper.textContent;
+    }
   });
 });
 
@@ -63,6 +102,7 @@ all_buts[17].addEventListener("click", function () {
     }
   }
   num1 = input.value;
+  operation = "";
   num2 = "";
 });
 
