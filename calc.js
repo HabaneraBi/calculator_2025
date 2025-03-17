@@ -5,14 +5,19 @@ let buttons_oper = document.querySelectorAll(".oper");
 let operation = "";
 let num1 = "";
 let num2 = "";
-// 0 1 2 5 6 7 10 11 12 16
+
 buttons_figure.forEach((figure) => {
   figure.addEventListener("click", function () {
     if (input.value === "На ноль делить нельзя!") {
       num1 = figure.textContent;
       input.value = figure.textContent;
     } else if (figure.textContent === ".") {
-      if (num1 !== "" && num2 === "" && operation === "") {
+      if (
+        (num1.includes(figure.textContent) && operation === "") ||
+        num2.includes(figure.textContent)
+      ) {
+        return;
+      } else if (num1 !== "" && num2 === "" && operation === "") {
         num1 += figure.textContent;
       } else if (num2 !== "" && operation !== "") {
         num2 += figure.textContent;
