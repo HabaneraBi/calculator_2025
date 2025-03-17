@@ -1,0 +1,51 @@
+body {
+  background-color: rgb(231, 231, 231);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+h1 {
+  color: black;
+}
+input {
+  background-color: rgb(233, 232, 232);
+  color: black;
+  margin-bottom: 3%;
+  width: inherit;
+  height: 3em;
+  margin-left: 0;
+  border: 2px solid white;
+}
+.main {
+  display: flex;
+  width: inherit;
+  flex-direction: column;
+  border: 2px solid white;
+  padding: 1%;
+  background-color: black;
+}
+.buts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) 1.28fr 1fr;
+  grid-template-rows: repeat(4, 3em);
+  justify-items: stretch;
+  row-gap: 0.3em;
+  column-gap: 0.3em;
+  justify-content: center;
+}
+button {
+  font-size: 15px;
+  color: rgb(233, 232, 232);
+  background-color: rgb(17, 17, 17);
+  border: 3px solid rgb(233, 232, 232);
+}
+button:hover {
+  background-color: rgb(49, 49, 49);
+}
+button:active {
+  background-color: black;
+}
+
+.move {
+  margin-left: 12px;
+}

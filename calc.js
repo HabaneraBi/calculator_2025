@@ -5,6 +5,7 @@ let buttons_oper = document.querySelectorAll(".oper");
 let operation = "";
 let num1 = "";
 let num2 = "";
+let style = document.getElementById("style");
 
 buttons_figure.forEach((figure) => {
   figure.addEventListener("click", function () {
@@ -135,4 +136,15 @@ all_buts[9].addEventListener("click", function () {
     num1 = num1_arr.join("");
   }
   input.value = input_arr.join("");
+});
+
+//theme
+all_buts[19].addEventListener("click", function () {
+  if (all_buts[19].textContent === "Light") {
+    all_buts[19].textContent = "Dark";
+    style.href = "calc_light.css";
+  } else {
+    all_buts[19].textContent = "Light";
+    style.href = "calc_dark.css";
+  }
 });
