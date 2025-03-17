@@ -111,3 +111,25 @@ all_buts[4].addEventListener("click", function () {
   num2 = "";
   operation = "";
 });
+
+//del
+all_buts[9].addEventListener("click", function () {
+  let input_arr = input.value.split("");
+  if (num2 !== "") {
+    input_arr.pop();
+    let num2_arr = num2.split("");
+    num2_arr.pop();
+    num2 = num2_arr.join("");
+    console.log("Я num2 - " + num2);
+  } else if (num2 === "" && operation !== "") {
+    input_arr.splice(input_arr.indexOf(" "), 3);
+    operation = "";
+  } else if (num1 !== "" && operation === "" && num2 === "") {
+    input_arr.pop();
+    let num1_arr = num1.split("");
+    num1_arr.pop();
+    num1 = num1_arr.join("");
+    console.log("Я num1 - " + num1);
+  }
+  input.value = input_arr.join("");
+});
